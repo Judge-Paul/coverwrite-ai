@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Home() {
     return (
-        <div className="lg:px-36">
+        <div>
             <h1 className="text-center pt-16 text-5xl font-bold tracking-wide text-[#333333]">
                 JobWriteAI
             </h1>
