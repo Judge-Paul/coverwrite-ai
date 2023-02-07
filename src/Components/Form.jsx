@@ -32,8 +32,14 @@ From Akwa Ibom state: I am from Cross River...`
         const apiUrl = "https://api.openai.com/v1/completions";
         var data = `{
             "model": "text-davinci-003",
-            "prompt": ${JSON.stringify(formData.jobDesc)}
+            "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))}
          }`;
+         function generatePrompt(jobDescr, skills = "") {
+            let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
+            return `Generate a cover letter for the Job description below
+${skillsSec}
+${jobDescr}`
+         }
          function makeRequest(url, data) {
             return new Promise(function(resolve, reject) {
                 var xhr = new XMLHttpRequest();
@@ -61,7 +67,7 @@ From Akwa Ibom state: I am from Cross River...`
             }
          makeRequest(apiUrl, data)
             .then(function(response) {
-               console.log(response);
+               console.log((JSON.parse(response)).choices[0].text);
             })
             .catch(function(error) {
                console.error(error);
@@ -86,7 +92,7 @@ From Akwa Ibom state: I am from Cross River...`
                         onChange={handleFormChange}
                     />
                 </div>
-                {/* <div>
+                <div>
                     <label 
                         htmlFor="skills"
                         className="text-[1.2rem] md:text-[2rem] font-bold text-[#333333] md:pl-5"
@@ -100,7 +106,7 @@ From Akwa Ibom state: I am from Cross River...`
                         value={formData.skills}
                         onChange={handleFormChange}
                     />
-                </div> */}
+                </div>
                 <div className="text-center pt-10">
                     <button
                         className="py-5 w-full md:w-2/5 rounded-xl bg-green-600 text-white text-xl font-semibold"
