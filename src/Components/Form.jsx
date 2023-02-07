@@ -18,6 +18,8 @@ From Akwa Ibom state: I am from Cross River...`
         jobDesc: "",
         skills: ""
     })
+    const [coverLetter, setCoverLetter] = useState("")
+
     function handleFormChange(event){
         const {name, value} = event.target
         setFormData((currFormData) => ({
@@ -26,9 +28,49 @@ From Akwa Ibom state: I am from Cross River...`
         }))
     }
 
+    function fetchResult() {
+        const apiUrl = "https://api.openai.com/v1/completions";
+        var data = `{
+            "model": "text-davinci-003",
+            "prompt": ${JSON.stringify(formData.jobDesc)}
+         }`;
+         function makeRequest(url, data) {
+            return new Promise(function(resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader("Authorization", "Bearer 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");
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        resolve(xhr.responseText);
+                    } else {
+                        reject({
+                        status: xhr.status,
+                        statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function() {
+                    reject({
+                        status: xhr.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                xhr.send(data);
+            });
+            }
+         makeRequest(apiUrl, data)
+            .then(function(response) {
+               console.log(response);
+            })
+            .catch(function(error) {
+               console.error(error);
+            });
+    }
+
     return (
         <>
-            <form className="pt-4 pb-10">
+            <div className="pt-4 pb-10">
                 <div className="pb-10">
                     <label 
                         htmlFor="jobDesc"
@@ -40,11 +82,11 @@ From Akwa Ibom state: I am from Cross River...`
                         name="jobDesc"
                         className="border focus:border-2 border-[#333333] rounded-lg w-full h-[20rem] px-7 py-4 text-xl md:mt-4"
                         placeholder={jobDesc}
-                        value={formData.placement}
+                        value={formData.jobDesc}
                         onChange={handleFormChange}
                     />
                 </div>
-                <div>
+                {/* <div>
                     <label 
                         htmlFor="skills"
                         className="text-[1.2rem] md:text-[2rem] font-bold text-[#333333] md:pl-5"
@@ -58,15 +100,19 @@ From Akwa Ibom state: I am from Cross River...`
                         value={formData.skills}
                         onChange={handleFormChange}
                     />
-                </div>
+                </div> */}
                 <div className="text-center pt-10">
                     <button
                         className="py-5 w-full md:w-2/5 rounded-xl bg-green-600 text-white text-xl font-semibold"
+                        onClick={fetchResult}
                     >
                         Generate Cover Letter
                     </button>
                 </div>
-            </form>
+                <div className="py-20">
+                    {coverLetter}
+                </div>
+            </div>
         </>
     )
 }
