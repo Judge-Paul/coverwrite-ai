@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from "./Modal";
 
 export default function Form() {
     const jobDesc = `Entry Level Job Posting Available 
@@ -20,6 +21,7 @@ From Akwa Ibom state: I am from Cross River...`
         skills: ""
     })
     const [coverLetter, setCoverLetter] = useState("")
+    const [showModal, setShowModal] = useState(true)
     
     function getCoverLetter() {
         const client = axios.create({
@@ -100,12 +102,9 @@ From Akwa Ibom state: I am from Cross River...`
                         Generate Cover Letter
                     </button>
                 </div>
-                {coverLetter !== "" && <h2 className="text-center pt-16 text-3xl md:text-4xl font-bold">
-                    Cover Letter
-                </h2>}
-                <div className="py-4">
-                    {coverLetter}
-                </div>
+                {coverLetter !== "" &&   
+                    <Modal text={coverLetter} showModal={showModal} closeModal={() => setShowModal(false)} />
+                }
             </div>
         </>
     )
