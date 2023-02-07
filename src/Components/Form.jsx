@@ -34,7 +34,7 @@ From Akwa Ibom state: I am from Cross River...`
         return `Generate a cover letter for the Job description below
 ${skillsSec}
 ${jobDescr}`
-     }
+     }    
      
      useEffect(() => {
         setApiInfo(currApiInfo => ({
@@ -46,11 +46,9 @@ ${jobDescr}`
                  "max_tokens": 1000
               }`
          }))
-     }, [formData])
-     
+     }, [])
 
     function fetchResult() {
-         console.log(apiInfo)
         return makeRequest(apiInfo.url, apiInfo.data)
         .then(function(response) {
             setCoverLetter(JSON.stringify(JSON.parse(response).choices[0].text))
@@ -58,7 +56,6 @@ ${jobDescr}`
         .catch(function(error) {
             console.error(error);
         });
-         
     }
 
     function makeRequest(url, data) {
@@ -86,10 +83,7 @@ ${jobDescr}`
            xhr.send(data);
        });
     }
-    // useEffect(() => {
-    // }, [apiInfo])
 
-    console.log(coverLetter)
     return (
         <>
             <div className="pt-4 pb-10">
