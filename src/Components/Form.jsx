@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Form() {
     const jobDesc = `Entry Level Job Posting Available 
@@ -19,7 +20,36 @@ From Akwa Ibom state: I am from Cross River...`
         skills: ""
     })
     const [coverLetter, setCoverLetter] = useState("")
-    const [apiInfo, setApiInfo] = useState({url: "", data: null})
+    
+    function getCoverLetter() {
+        const client = axios.create({
+            headers: {
+                Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+            },
+        })
+    
+        const params = {
+            prompt: generatePrompt(formData.jobDesc, formData.skills),
+            model: "text-davinci-003",
+            max_tokens: 1000
+        }
+    
+        client
+            .post("https://api.openai.com/v1/completions", params)
+            .then((result) => {
+                setCoverLetter(result.data.choices[0].text)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    function generatePrompt(jobDescr, skills = "") {
+            let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
+            return `Generate a cover letter for the Job description below
+    ${skillsSec}
+    ${jobDescr}`
+    }  
 
     function handleFormChange(event){
         const {name, value} = event.target
@@ -27,61 +57,6 @@ From Akwa Ibom state: I am from Cross River...`
             ...currFormData,
             [name]: value
         }))
-    }
-    
-    function generatePrompt(jobDescr, skills = "") {
-        let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
-        return `Generate a cover letter for the Job description below
-${skillsSec}
-${jobDescr}`
-     }    
-     
-     useEffect(() => {
-        setApiInfo(currApiInfo => ({
-            ...currApiInfo,
-             url: "https://api.openai.com/v1/completions",
-             data: `{
-                 "model": "text-davinci-003",
-                 "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))},
-                 "max_tokens": 1000
-              }`
-         }))
-     }, [])
-
-    function fetchResult() {
-        return makeRequest(apiInfo.url, apiInfo.data)
-        .then(function(response) {
-            setCoverLetter(JSON.stringify(JSON.parse(response).choices[0].text))
-        })
-        .catch(function(error) {
-            console.error(error);
-        });
-    }
-
-    function makeRequest(url, data) {
-       return new Promise(function(resolve, reject) {
-           var xhr = new XMLHttpRequest();
-           xhr.open("POST", url);
-           xhr.setRequestHeader("Content-Type", "application/json");
-           xhr.setRequestHeader("Authorization", `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`);
-           xhr.onload = function() {
-               if (xhr.status >= 200 && xhr.status < 300) {
-                   resolve(xhr.responseText);
-               } else {
-                   reject({
-                   status: xhr.status,
-                   statusText: xhr.statusText
-                   });
-               }
-           };
-           xhr.onerror = function() {
-               reject({
-                   status: xhr.status,
-                   statusText: xhr.statusText
-               });
-           };
-           xhr.send(data);
-       });
     }
 
     return (
@@ -119,8 +94,8 @@ ${jobDescr}`
                 </div>
                 <div className="text-center pt-10">
                     <button
-                        className="py-5 w-full md:w-2/5 rounded-xl bg-green-600 text-white text-xl font-semibold"
-                        onClick={fetchResult}
+                        className="py-5 w-full md:w-2/5 rounded-xl bg-green-600 text-white text-2xl font-semibold"
+                        onClick={getCoverLetter}
                     >
                         Generate Cover Letter
                     </button>
