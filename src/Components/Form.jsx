@@ -63,7 +63,7 @@ ${jobDescr}`
            var xhr = new XMLHttpRequest();
            xhr.open("POST", url);
            xhr.setRequestHeader("Content-Type", "application/json");
-           xhr.setRequestHeader("Authorization", "Bearer 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");
+           xhr.setRequestHeader("Authorization", `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`);
            xhr.onload = function() {
                if (xhr.status >= 200 && xhr.status < 300) {
                    resolve(xhr.responseText);
