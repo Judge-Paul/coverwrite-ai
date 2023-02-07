@@ -32,7 +32,8 @@ From Akwa Ibom state: I am from Cross River...`
         const apiUrl = "https://api.openai.com/v1/completions";
         var data = `{
             "model": "text-davinci-003",
-            "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))}
+            "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))},
+            "max_tokens": 1000
          }`;
          function generatePrompt(jobDescr, skills = "") {
             let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
