@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Form() {
     const jobDesc = `Entry Level Job Posting Available 
@@ -19,6 +19,7 @@ From Akwa Ibom state: I am from Cross River...`
         skills: ""
     })
     const [coverLetter, setCoverLetter] = useState("")
+    const [apiInfo, setApiInfo] = useState({url: "", data: null})
 
     function handleFormChange(event){
         const {name, value} = event.target
@@ -27,54 +28,68 @@ From Akwa Ibom state: I am from Cross River...`
             [name]: value
         }))
     }
-
-    function fetchResult() {
-        const apiUrl = "https://api.openai.com/v1/completions";
-        var data = `{
-            "model": "text-davinci-003",
-            "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))},
-            "max_tokens": 1000
-         }`;
-         function generatePrompt(jobDescr, skills = "") {
-            let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
-            return `Generate a cover letter for the Job description below
+    
+    function generatePrompt(jobDescr, skills = "") {
+        let skillsSec = skills === "" ? "" : `Please note I do not have the following skills ${skills}`
+        return `Generate a cover letter for the Job description below
 ${skillsSec}
 ${jobDescr}`
-         }
-         function makeRequest(url, data) {
-            return new Promise(function(resolve, reject) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.setRequestHeader("Authorization", "Bearer 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");
-                xhr.onload = function() {
-                    if (xhr.status >= 200 && xhr.status < 300) {
-                        resolve(xhr.responseText);
-                    } else {
-                        reject({
-                        status: xhr.status,
-                        statusText: xhr.statusText
-                        });
-                    }
-                };
-                xhr.onerror = function() {
-                    reject({
-                        status: xhr.status,
-                        statusText: xhr.statusText
-                    });
-                };
-                xhr.send(data);
-            });
-            }
-         makeRequest(apiUrl, data)
-            .then(function(response) {
-               console.log((JSON.parse(response)).choices[0].text);
-            })
-            .catch(function(error) {
-               console.error(error);
-            });
+     }
+     
+     useEffect(() => {
+        setApiInfo(currApiInfo => ({
+            ...currApiInfo,
+             url: "https://api.openai.com/v1/completions",
+             data: `{
+                 "model": "text-davinci-003",
+                 "prompt": ${JSON.stringify(generatePrompt(formData.jobDesc, formData.skills))},
+                 "max_tokens": 1000
+              }`
+         }))
+     }, [formData])
+     
+
+    function fetchResult() {
+         console.log(apiInfo)
+        return makeRequest(apiInfo.url, apiInfo.data)
+        .then(function(response) {
+            setCoverLetter(JSON.stringify(JSON.parse(response).choices[0].text))
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
+         
     }
 
+    function makeRequest(url, data) {
+       return new Promise(function(resolve, reject) {
+           var xhr = new XMLHttpRequest();
+           xhr.open("POST", url);
+           xhr.setRequestHeader("Content-Type", "application/json");
+           xhr.setRequestHeader("Authorization", "Bearer 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");
+           xhr.onload = function() {
+               if (xhr.status >= 200 && xhr.status < 300) {
+                   resolve(xhr.responseText);
+               } else {
+                   reject({
+                   status: xhr.status,
+                   statusText: xhr.statusText
+                   });
+               }
+           };
+           xhr.onerror = function() {
+               reject({
+                   status: xhr.status,
+                   statusText: xhr.statusText
+               });
+           };
+           xhr.send(data);
+       });
+    }
+    // useEffect(() => {
+    // }, [apiInfo])
+
+    console.log(coverLetter)
     return (
         <>
             <div className="pt-4 pb-10">
@@ -116,7 +131,10 @@ ${jobDescr}`
                         Generate Cover Letter
                     </button>
                 </div>
-                <div className="py-20">
+                {coverLetter !== "" && <h2 className="text-center pt-16 text-3xl md:text-4xl font-bold">
+                    Cover Letter
+                </h2>}
+                <div className="py-4">
                     {coverLetter}
                 </div>
             </div>
