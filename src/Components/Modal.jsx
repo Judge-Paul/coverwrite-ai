@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { FaClipboard, FaClipboardCheck } from "react-icons/fa";
 
 export default function Modal(props) {
+  const [copied, setCopied] = useState(false)
   return (
     <>
       {props.showModal ? (
@@ -16,6 +19,11 @@ export default function Modal(props) {
                   </p>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <CopyToClipboard text={props.text} onCopy={() => setCopied(true)}>
+                    <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                      {copied ? "Copied!" : "Copy to clipboard"}
+                    </button>
+                  </CopyToClipboard>
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
