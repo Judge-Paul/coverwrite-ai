@@ -73,7 +73,7 @@ From Akwa Ibom state: I am from Cross River...`
                     </label>
                     <textarea 
                         name="jobDesc"
-                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[20rem] px-7 py-4 text-xl md:mt-4"
+                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[20rem] px-3 md:px-7 py-4 text-xl md:mt-4"
                         placeholder={jobDesc}
                         value={formData.jobDesc}
                         onChange={handleFormChange}
@@ -88,7 +88,7 @@ From Akwa Ibom state: I am from Cross River...`
                     </label>
                     <textarea 
                         name="skills"
-                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[10rem] px-7 py-4 text-xl md:mt-4"
+                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[10rem] px-3 md:px-7 py-4 text-xl md:mt-4"
                         placeholder={skills}
                         value={formData.skills}
                         onChange={handleFormChange}
@@ -96,7 +96,7 @@ From Akwa Ibom state: I am from Cross River...`
                 </div>
                 <div className="text-center pt-10">
                     <button
-                        className="py-5 w-full md:w-2/5 rounded-xl bg-green-600 text-white text-2xl font-semibold"
+                        className="py-5 w-full md:w-2/5 rounded-lg md:rounded-xl bg-green-600 text-white text-2xl font-semibold"
                         onClick={getCoverLetter}
                     >
                         Generate Cover Letter
