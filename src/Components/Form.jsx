@@ -108,7 +108,7 @@ From Akwa Ibom state: I am from Cross River...`
                     </button>
                 </div>
                 {coverLetter !== "" &&   
-                    <Modal text={coverLetter} showModal={showModal} closeModal={() => setShowModal(false)} />
+                    <Modal text={coverLetter} showModal={showModal} closeModal={() => {setShowModal(false)}} />
                 }
             </div> 
             {isLoading && <Backdrop
