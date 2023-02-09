@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "./Modal";
+import { Backdrop } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Form() {
     const jobDesc = `Entry Level Job Posting Available 
@@ -22,8 +24,10 @@ From Akwa Ibom state: I am from Cross River...`
     })
     const [coverLetter, setCoverLetter] = useState("")
     const [showModal, setShowModal] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     
     function getCoverLetter() {
+        setIsLoading(true)
         const client = axios.create({
             headers: {
                 Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
@@ -40,6 +44,7 @@ From Akwa Ibom state: I am from Cross River...`
             .post("https://api.openai.com/v1/completions", params)
             .then((result) => {
                 setCoverLetter(result.data.choices[0].text)
+                setIsLoading(false)
             })
             .catch((err) => {
                 console.log(err)
@@ -105,7 +110,13 @@ From Akwa Ibom state: I am from Cross River...`
                 {coverLetter !== "" &&   
                     <Modal text={coverLetter} showModal={showModal} closeModal={() => setShowModal(false)} />
                 }
-            </div>
+            </div> 
+            {isLoading && <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>}
         </>
     )
 }
