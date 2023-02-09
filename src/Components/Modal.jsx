@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { jsPDF } from "jsPDF";
+import { FaDownload } from "react-icons/fa"
+const doc = new jsPDF();
 
 export default function Modal({ showModal, closeModal, text }) {
   const [editableText, setEditableText] = useState(text);
   const [copied, setCopied] = useState(false)
+
+  function savePDF(text) {
+    doc.text(text, 10, 10);
+    doc.save("Cover Letter.pdf");
+  }
+
   return (
     <>
       {showModal ? (
@@ -21,6 +30,12 @@ export default function Modal({ showModal, closeModal, text }) {
                   />
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <button 
+                    onClick={() => savePDF(editableText)}
+                    className="bg-blue-500 text-white font-bold py-3 px-4 rounded hover:bg-blue-700 mr-3"
+                  >
+                    <FaDownload />
+                  </button>
                   <CopyToClipboard text={editableText} onCopy={() => setCopied(true)}>
                     <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
                       {copied ? "Copied!" : "Copy to clipboard"}
