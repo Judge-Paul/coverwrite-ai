@@ -83,7 +83,7 @@ export default function Form() {
                     </label>
                     <textarea 
                         name="skills"
-                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[10rem] px-3 md:px-7 py-4 text-xl md:mt-4"
+                        className="border focus:border-2 border-[#333333] rounded-lg w-full h-[8rem] px-3 md:px-7 py-4 text-xl md:mt-4"
                         placeholder={skills}
                         value={formData.skills}
                         onChange={handleFormChange}

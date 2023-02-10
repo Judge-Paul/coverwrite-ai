@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { jsPDF } from "jsPDF";
+import jsPDF from "jsPDF";
 import { FaDownload } from "react-icons/fa"
 const doc = new jsPDF("p", "in", "a4");
 
