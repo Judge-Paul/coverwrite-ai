@@ -10,6 +10,7 @@ Use the package manager [npm](https://www.npmjs.com/) and run
 npm install
 npm run dev
 ```
+
 ## Dependencies
 npm will install the following dependencies
 
@@ -25,8 +26,14 @@ npm will install the following dependencies
 - react-dom
 - react-icons
 
-## Contributing
+## Usage
+![ezgif com-crop](https://user-images.githubusercontent.com/110723341/218100683-7e0c7666-cdf2-4852-81a4-bc50af7b44ba.gif)
 
+## Contributing
+### Contributors (People with edit access)
+Checkout any change you are making to a new branch then create a pull request for that branch to be merged
+
+### Non Contributors (People without edit access)
 Pull requests are welcome. For major changes, please open an issue first or message me on [twitter](https://twitter.com/paulogebe) to discuss what you would like to change.
 
 ## License
