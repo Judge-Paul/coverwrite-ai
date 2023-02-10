@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { jsPDF } from "jsPDF";
 import { FaDownload } from "react-icons/fa"
-const doc = new jsPDF();
+const doc = new jsPDF("p", "in", "a4");
 
 export default function Modal({ showModal, closeModal, text }) {
   const [editableText, setEditableText] = useState(text);
   const [copied, setCopied] = useState(false)
 
   function savePDF(text) {
-    doc.text(text, 10, 10);
-    doc.save("Cover Letter.pdf");
+    let lMargin=20; //left margin in mm
+    let rMargin=20; //right margin in mm
+    let pdfInMM=210;  // width of A4 in mm
+    let doc = new jsPDF("p","mm","a4");
+    let lines = doc.splitTextToSize(text, (pdfInMM-lMargin-rMargin));
+    doc.text(lMargin, 20, lines);
+    doc.save('Cover Letter.pdf');
   }
 
   return (
