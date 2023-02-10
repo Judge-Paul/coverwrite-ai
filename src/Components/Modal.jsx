@@ -9,8 +9,8 @@ export default function Modal({ showModal, closeModal, text }) {
   const [copied, setCopied] = useState(false)
 
   function savePDF(text) {
-    let lMargin=20; //left margin in mm
-    let rMargin=20; //right margin in mm
+    let lMargin=20;
+    let rMargin=20;
     let pdfInMM=210;  // width of A4 in mm
     let doc = new jsPDF("p","mm","a4");
     let lines = doc.splitTextToSize(text, (pdfInMM-lMargin-rMargin));

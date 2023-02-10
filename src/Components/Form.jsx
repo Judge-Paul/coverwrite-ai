@@ -98,7 +98,15 @@ export default function Form() {
                     </button>
                 </div>
                 {coverLetter !== "" &&   
-                    <Modal text={coverLetter} showModal={showModal} closeModal={() => {setShowModal(false)}} />
+                    <Modal 
+                        text={coverLetter} 
+                        showModal={showModal} 
+                        closeModal={() => {
+                            setShowModal(false)
+                            setCoverLetter("")
+                            setShowModal(true)
+                        }} 
+                    />
                 }
             </div> 
             {isLoading && <Backdrop
