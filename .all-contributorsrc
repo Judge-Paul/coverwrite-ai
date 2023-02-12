@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Judge-Paul",
+      "name": "Judge-Paul Ogebe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110723341?v=4",
+      "profile": "https://github.com/Judge-Paul",
+      "contributions": [
+        "code",
+        "doc",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "jobwrite-ai",
+  "projectOwner": "Judge-Paul"
+}
