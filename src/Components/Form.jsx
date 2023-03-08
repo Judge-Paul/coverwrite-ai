@@ -62,7 +62,7 @@ export default function Form() {
                 <div className="pb-10">
                     <label 
                         htmlFor="jobDesc"
-                        className="text-[1.2rem] md:text-[2rem] font-bold text-[#333333] md:pl-5"
+                        className="text-[1.2rem] md:text-[2rem] font-bold text-[#999999] dark:text-[#bfbfbf] md:pl-5"
                     >
                         Paste the Job Placement / Description
                     </label>
@@ -77,7 +77,7 @@ export default function Form() {
                 <div>
                     <label 
                         htmlFor="skills"
-                        className="text-[1.2rem] md:text-[2rem] font-bold text-[#333333] md:pl-5"
+                        className="text-[1.2rem] md:text-[2rem] font-bold text-[#999999] dark:text-[#bfbfbf] md:pl-5"
                     >
                         Fill out the skills you don't have
                     </label>
