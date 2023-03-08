@@ -91,7 +91,7 @@ export default function Form() {
                 </div>
                 <div className="text-center pt-10">
                     <button
-                        className="py-5 w-full md:w-2/5 rounded-lg md:rounded-xl bg-green-600 text-white text-2xl font-semibold"
+                        className="py-5 w-full md:w-2/5 rounded-lg md:rounded-xl bg-[#007aff] dark:bg-[#5f5f5f] text-white text-2xl font-semibold"
                         onClick={getCoverLetter}
                     >
                         Generate Cover Letter
