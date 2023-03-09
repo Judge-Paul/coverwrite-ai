@@ -20,10 +20,10 @@ function Navbar() {
           onClick={toggleDarkMode}
         >
             {<>
-                <BsSunFill color="#FFFF00" size="20px" className="block dark:hidden my-auto ml-1" />
+                <BsMoonFill size="20px" className="hidden dark:flex my-auto ml-1" />
                 <FaCircle size="30px" className="text-white dark:text-black"/>
             </>}
-            {<BsMoonFill size="20px" className="hidden dark:flex my-auto mr-1" />}
+            <BsSunFill color="#FFFF00" size="20px" className="block dark:hidden my-auto mr-1" />
         </button>
       </div>
     </nav>
