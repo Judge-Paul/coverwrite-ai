@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "./Modal";
 import { Backdrop } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Alert } from "@mui/material/";
+import { Slide, Alert } from "@mui/material/";
 
 export default function Form() {
     const jobDesc = placeholder.jobDesc
@@ -67,9 +67,14 @@ export default function Form() {
 
     return (
         <>
-            {wasEmpty && <Alert severity="warning" className="top-0 right-0 fixed">
+            {wasEmpty && <Slide direction="left" in={wasEmpty} mountOnEnter unmountOnExit>
+                <Alert
+                severity="warning"
+                className="top-0 right-0 fixed"
+                >
                 <strong>Job Description Empty</strong>
-            </Alert>}
+                </Alert>
+            </Slide>}
             <div className="pt-4 pb-10">
                 <div className="pb-10">
                     <label 
