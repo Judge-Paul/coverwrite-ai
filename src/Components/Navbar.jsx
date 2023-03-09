@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 function Navbar() {
   const [dark, setDark] = useState(false)
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark")
     setDark(prevTheme => !prevTheme)
+    document.documentElement.classList.toggle("dark")
   };
 
   return (
@@ -25,12 +25,12 @@ function Navbar() {
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.8 }}
                 >
                   <BsMoonFill size="20px" className="mt-1 ml-2" />
                 </motion.div>
                 <motion.div
-                  initial={{ x: -100 }}
+                  initial={{ x: -75 }}
                   animate={{ x: 0 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -39,7 +39,7 @@ function Navbar() {
             </>}
             {!dark && <>
               <motion.div
-                  initial={{ x: 100 }}
+                  initial={{ x: 75 }}
                   animate={{ x: 0 }}
                   transition={{ duration: 0.4 }}
                 >
@@ -48,7 +48,7 @@ function Navbar() {
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.8 }}
                 >
                   <BsSunFill color="#FFFF00" size="22px" className="mr-2 mt-1" />
                 </motion.div>
