@@ -12,7 +12,7 @@ function Form() {
       const response = await axios.post("http://localhost:3000/generate", {
         prompt,
       });
-      console.log(response.data);
+      setGeneratedText(response.data.result[0].candidates[0].output);
     } catch (error) {
       console.error(error);
       // Handle error
@@ -39,7 +39,7 @@ function Form() {
       {generatedText && (
         <div>
           <h2>Generated Text:</h2>
-          <p>{generatedText}</p>
+          <p className="whitespace-pre w-96">{generatedText}</p>
         </div>
       )}
     </div>
