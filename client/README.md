@@ -2,9 +2,9 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-# JobWriteAI
+# CoverWriteAi
 
-JobWriteAI is a website that leverages the power of AI and GPT-3 technology to help job seekers create professional and personalized cover letters in a matter of minutes. Our platform is designed to simplify the job application process and help you stand out from the crowd by generating custom cover letters that match your experience and qualifications.
+CoverWriteAI is a website that leverages the power of AI and GPT-3 technology to help job seekers create professional and personalized cover letters in a matter of minutes. Our platform is designed to simplify the job application process and help you stand out from the crowd by generating custom cover letters that match your experience and qualifications.
 
 ## Installation
 
@@ -57,7 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Judge-Paul"><img src="https://avatars.githubusercontent.com/u/110723341?v=4?s=100" width="100px;" alt="Judge-Paul Ogebe"/><br /><sub><b>Judge-Paul Ogebe</b></sub></a><br /><a href="https://github.com/Judge-Paul/jobwrite-ai/commits?author=Judge-Paul" title="Code">💻</a> <a href="https://github.com/Judge-Paul/jobwrite-ai/commits?author=Judge-Paul" title="Documentation">📖</a> <a href="https://github.com/Judge-Paul/jobwrite-ai/pulls?q=is%3Apr+reviewed-by%3AJudge-Paul" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Judge-Paul"><img src="https://avatars.githubusercontent.com/u/110723341?v=4?s=100" width="100px;" alt="Judge-Paul Ogebe"/><br /><sub><b>Judge-Paul Ogebe</b></sub></a><br /><a href="https://github.com/Judge-Paul/coverwrite-ai/commits?author=Judge-Paul" title="Code">💻</a> <a href="https://github.com/Judge-Paul/coverwrite-ai/commits?author=Judge-Paul" title="Documentation">📖</a> <a href="https://github.com/Judge-Paul/coverwrite-ai/pulls?q=is%3Apr+reviewed-by%3AJudge-Paul" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
