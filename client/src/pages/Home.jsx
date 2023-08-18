@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Hero from "../images/hero.webp";
+import Hero from "../assets/hero.webp";
 
 export default function Home() {
   return (
-    <div className="bg-[#9fcaff] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-16">
+    <div className="bg-[#9fcaff] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-20">
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 md:mt-16">
           <h2 className="font-bold text-4xl md:text-6xl text-[#004fb6]">

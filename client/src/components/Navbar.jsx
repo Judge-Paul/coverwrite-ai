@@ -1,59 +1,39 @@
-import React, { useState } from "react";
-import { FaCircle } from "react-icons/fa";
-import { BsSunFill, BsMoonFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import Logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [dark, setDark] = useState(false)
-  const toggleDarkMode = () => {
-    setDark(prevTheme => !prevTheme)
-    document.documentElement.classList.toggle("dark")
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.pageYOffset > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="flex justify-between items-center py-4">
+    <nav
+      className={`flex items-center justify-between fixed top-0 z-10 w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 ${
+        isScrolled ? "bg-white/50 backdrop-blur-md" : ""
+      }`}
+    >
       <div className="text-4xl font-bold text-gray-800 dark:text-white">
-        JobWriteAi
+        <img src={Logo} alt="Logo" className="h-12" />
       </div>
-      <div className="flex items-center">
-        <button
-          type="button"
-          className="flex justify-between p-1 rounded-full w-[120px] bg-orange-500 dark:bg-gray-100 box-border"
-          onClick={toggleDarkMode}
-        >
-            {dark && <>
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <BsMoonFill size="20px" className="mt-1 ml-2" />
-                </motion.div>
-                <motion.div
-                  initial={{ x: -75 }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <FaCircle size="30px" className="text-white dark:text-black"/>
-                </motion.div>
-            </>}
-            {!dark && <>
-              <motion.div
-                  initial={{ x: 75 }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <FaCircle size="30px" className="text-white dark:text-black"/>
-                </motion.div>
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <BsSunFill color="#FFFF00" size="22px" className="mr-2 mt-1" />
-                </motion.div>
-            </>}
-        </button>
+      <div className="mt-2 text-[#3a4688] font-bold">
+        <Link className="mx-7">About</Link>
+        <Link className="mx-7">Pricing</Link>
+        <Link className="mx-7">Contact</Link>
+        <Link className="mx-7">Log In</Link>
       </div>
     </nav>
   );
