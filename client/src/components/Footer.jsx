@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#9fcaff] backdrop-blur-md pt-10 pb-6">
-      <hr className="pb-7" />
-      <div className="max-w-7xl mx-auto px-4 overflow-hidden sm:px-6 lg:px-8">
+    <footer className="bg-[#9fcaff] backdrop-blur-md pt-12 pb-6">
+      <div className="mx-auto px-4 overflow-hidden sm:px-6 lg:px-8 pt-8 border-t-2 border-white">
         <nav
           className="-mx-5 -my-2 flex flex-wrap justify-center"
           aria-label="Footer"

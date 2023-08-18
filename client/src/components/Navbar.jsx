@@ -27,13 +27,21 @@ function Navbar() {
       }`}
     >
       <Link to="/" className="text-4xl font-bold text-gray-800 dark:text-white">
-        <img src={Logo} alt="Logo" className="h-12" />
+        <img src={Logo} alt="Logo" className="h-10 md:h-12" />
       </Link>
-      <div className="mt-2 text-[#3a4688] font-bold">
-        <Link className="mx-7">Try It</Link>
-        <Link className="mx-7">Examples</Link>
-        <Link className="mx-7">About</Link>
-        <Link className="mx-7">Pricing</Link>
+      <div className="hidden md:flex mt-2 text-[#3a4688] font-bold">
+        <Link to="/form" className="mx-7">
+          Try It
+        </Link>
+        <Link to="/examples" className="mx-7">
+          Examples
+        </Link>
+        <Link to="/about" className="mx-7">
+          About
+        </Link>
+        <Link to="/pricing" className="mx-7">
+          Pricing
+        </Link>
       </div>
     </nav>
   );
