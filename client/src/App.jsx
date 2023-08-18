@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 export default function App() {
   return (
     <BrowserRouter>
@@ -12,6 +12,7 @@ export default function App() {
       </Fragment>
       <Routes>
         <Route element={<Home />} path="/" />
+        <Route element={<NotFound />} path="/*" />
       </Routes>
       <Fragment>
         <Footer />

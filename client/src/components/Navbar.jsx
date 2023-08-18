@@ -26,14 +26,14 @@ function Navbar() {
         isScrolled ? "bg-white/50 backdrop-blur-md" : ""
       }`}
     >
-      <div className="text-4xl font-bold text-gray-800 dark:text-white">
+      <Link to="/" className="text-4xl font-bold text-gray-800 dark:text-white">
         <img src={Logo} alt="Logo" className="h-12" />
-      </div>
+      </Link>
       <div className="mt-2 text-[#3a4688] font-bold">
+        <Link className="mx-7">Try It</Link>
+        <Link className="mx-7">Examples</Link>
         <Link className="mx-7">About</Link>
         <Link className="mx-7">Pricing</Link>
-        <Link className="mx-7">Contact</Link>
-        <Link className="mx-7">Log In</Link>
       </div>
     </nav>
   );
