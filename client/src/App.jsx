@@ -1,9 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import lazyLoading from "./components/lazyLoading";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
+
+const Home = lazyLoading(() => import("./pages/Home"));
+const NotFound = lazyLoading(() => import("./pages/NotFound"));
 export default function App() {
   return (
     <BrowserRouter>
