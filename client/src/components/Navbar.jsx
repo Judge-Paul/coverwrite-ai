@@ -13,7 +13,7 @@ function Navbar() {
   };
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 0) {
+      if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -30,7 +30,7 @@ function Navbar() {
   return (
     <>
       <nav
-        className={`flex items-center justify-between fixed top-0 z-10 w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 ${
+        className={`flex items-center font-workSans justify-between fixed top-0 z-10 w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 ${
           isScrolled ? "bg-white/50 backdrop-blur-md" : ""
         }`}
       >
@@ -38,16 +38,16 @@ function Navbar() {
           <img src={Logo} alt="Logo" className="h-10 md:h-12" />
         </Link>
         <div className="hidden md:flex mt-2 text-[#3a4688] font-bold">
-          <Link to="/form" className="mx-7">
+          <Link to="/form" className="mx-4 lg:mx-7">
             Try It
           </Link>
-          <Link to="/examples" className="mx-7">
+          <Link to="/examples" className="mx-4 lg:mx-7">
             Examples
           </Link>
-          <Link to="/about" className="mx-7">
+          <Link to="/about" className="mx-4 lg:mx-7">
             About
           </Link>
-          <Link to="/pricing" className="mx-7">
+          <Link to="/pricing" className="mx-4 lg:mx-7">
             Pricing
           </Link>
         </div>
@@ -61,7 +61,7 @@ function Navbar() {
           initial="hidden"
           animate="visible"
           variants={navAnimation}
-          className="md:hidden min-h-screen w-screen fixed bg-[#9fcaff] text-[#3a4688] z-[9999] flex justify-center items-center"
+          className="md:hidden min-h-screen font-workSans w-screen fixed bg-[#9fcaff] text-[#3a4688] z-[9999] flex justify-center items-center"
         >
           <div className="font-bold text-center">
             <Link

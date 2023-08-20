@@ -4,7 +4,7 @@ import Hero from "../assets/hero.webp";
 
 export default function Home() {
   return (
-    <main className="bg-[#9fcaff] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-20">
+    <main className="bg-[#9fcaff] font-workSans px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-20">
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 md:mt-16">
           <h2 className="font-bold text-3xl md:text-6xl text-[#004fb6]">

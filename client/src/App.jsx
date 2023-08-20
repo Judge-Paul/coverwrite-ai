@@ -6,19 +6,37 @@ import Footer from "./components/Footer";
 
 const Home = lazyLoading(() => import("./pages/Home"));
 const NotFound = lazyLoading(() => import("./pages/NotFound"));
+
+// Layout component for rendering routes with navbar and footer
+const Layout = ({ children }) => (
+  <div>
+    <Navbar />
+    {children}
+    <Footer />
+  </div>
+);
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Fragment>
-        <Navbar />
-      </Fragment>
       <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<NotFound />} path="/*" />
+        <Route
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+          path="/"
+        />
+        <Route
+          element={
+            <Layout>
+              <NotFound />
+            </Layout>
+          }
+          path="/*"
+        />
       </Routes>
-      <Fragment>
-        <Footer />
-      </Fragment>
     </BrowserRouter>
   );
 }
