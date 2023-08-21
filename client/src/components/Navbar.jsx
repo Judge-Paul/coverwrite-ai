@@ -30,15 +30,17 @@ function Navbar() {
   return (
     <>
       <nav
-        className={`flex items-center font-workSans justify-between fixed top-0 z-10 w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 ${
-          isScrolled ? "bg-white/50 backdrop-blur-md" : ""
+        className={`flex items-center font-workSans justify-between w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 ${
+          isScrolled
+            ? "bg-white/50 backdrop-blur-md fixed top-0 z-10"
+            : "bg-[#9fcaff]"
         }`}
       >
         <Link to="/">
           <img src={Logo} alt="Logo" className="h-10 md:h-12" />
         </Link>
         <div className="hidden md:flex mt-2 text-[#3a4688] font-bold">
-          <Link to="/form" className="mx-4 lg:mx-7">
+          <Link to="/create" className="mx-4 lg:mx-7">
             Try It
           </Link>
           <Link to="/examples" className="mx-4 lg:mx-7">
@@ -52,7 +54,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="md:hidden" onClick={() => setIsOpen(true)}>
-          <IoMenu size={37} className="text-[#3a4688] cursor-pointer" />
+          <IoMenu size={37} className="text-[#004fb6] cursor-pointer" />
         </div>
       </nav>
 
@@ -65,7 +67,7 @@ function Navbar() {
         >
           <div className="font-bold text-center">
             <Link
-              to="/form"
+              to="/create"
               className="block my-3 text-lg hover:text-[#29306f]"
             >
               Try It

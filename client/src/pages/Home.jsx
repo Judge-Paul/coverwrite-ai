@@ -24,8 +24,8 @@ export default function Home() {
             ideal candidate.
           </p>
           <Link
-            to="/form"
-            className="text-[#fcfcd4] bg-[#004fb6] hover:bg-[#003d99] active:bg-[#003c99] font-bold px-20 py-3 rounded-md mt-8 inline-block w-full md:w-max text-center"
+            to="/create"
+            className="text-[#fcfcd4] bg-[#004fb6] hover:bg-[#003d99] active:bg-[#003c99] font-bold px-20 py-3 rounded-full mt-8 inline-block w-full md:w-max text-center"
           >
             Get Started
           </Link>
