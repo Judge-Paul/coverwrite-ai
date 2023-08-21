@@ -17,7 +17,7 @@ const client = new TextServiceClient({
 
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors(["http://localhost:5173", "https://coverwrite.vercel.app"]));
 
 app.post("/generate", (req, res) => {
   const { prompt } = req.body;

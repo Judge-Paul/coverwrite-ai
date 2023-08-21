@@ -49,9 +49,12 @@ export default function Create() {
       setIsLoading(true);
       const prompt = `I am going to pass you some values one is a job description and the next is additional info about myself using those two create the perfect cover letter for the job. If what I pass in the job description section doesn't look like an actual job description don't bother creating the Cover Letter just give me the output "Not a Valid Job Description".\nJob Description: ${formData.description}\nAdditional Info: ${formData.additionalInfo}`;
       try {
-        const response = await axios.post("http://localhost:3000/generate", {
-          prompt,
-        });
+        const response = await axios.post(
+          "https://coverwrite.onrender.com/generate",
+          {
+            prompt,
+          }
+        );
 
         const generatedText =
           response?.data?.result?.[0]?.candidates?.[0]?.output;
