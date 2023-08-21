@@ -22,7 +22,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-loading-skeleton": "^3.3.1",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "sonner": "^0.6.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
