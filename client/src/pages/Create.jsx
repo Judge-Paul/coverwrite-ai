@@ -18,21 +18,12 @@ export default function Create() {
   const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
-    let isValid = true;
-    const newFormErrors = {};
-
-    if (!formData.description) {
-      newFormErrors.description = "Job description is required.";
-      isValid = false;
-    }
-
-    if (!formData.additionalInfo) {
-      newFormErrors.additionalInfo = "Additional information is required.";
-      isValid = false;
-    }
-
-    setFormErrors(newFormErrors);
-    return isValid;
+      const newFormErrors = {};
+      newFormErrors.description = !formData.description ? "Job description is required.": formData.description;
+      newFormErrors.additionalInfo = !formData.additionalInfo ? "Additional information is required." : formData.additionalInfo;
+      setFormErrors(newFormErrors);
+      let isValid = formErrors.description.strip().length != 0 && formErrors.additionalInfo.strip().length != 0;
+      return isValid // Returns true if form data contains description and additional info
   };
 
   const handleChange = (event) => {
