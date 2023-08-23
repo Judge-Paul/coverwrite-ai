@@ -54,7 +54,7 @@ function Navbar() {
           {links.map((link) => (
             <Link
               to={link.route}
-              className="mx-4 lg:mx-7"
+              className="mx-4 lg:mx-7 hover:text-blue-500"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
