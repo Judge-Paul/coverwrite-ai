@@ -62,6 +62,12 @@ By following these steps and creating an issue, you help maintain a structured d
 
 Thank you for your contributions!
 
+## screenshot of the home page and create page
+
+<img src="./client/src/assets/screenshot1.png" width="100px;" alt="Home page"/>
+
+<img src="./client/src/assets/screenshot2.png" width="100px;" alt="Create page"/>
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
