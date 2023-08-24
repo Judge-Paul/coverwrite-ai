@@ -62,12 +62,14 @@ By following these steps and creating an issue, you help maintain a structured d
 
 Thank you for your contributions!
 
-## screenshot of the home page and create page
+## 📸 Screenshots
 
-**Home Page**
+<h4>Home Page</h4>
+
 ![screenshot1](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/4d6c0961-3a18-4fe9-bd90-76518067871b)
 
-**Create Page**
+<h4>Create Page</h4> 
+
 ![screenshot2](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/e6273cc9-cf5b-4600-8c6d-d3a7be6b8fb1)
 
 ## Contributors ✨
