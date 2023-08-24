@@ -64,9 +64,9 @@ Thank you for your contributions!
 
 ## screenshot of the home page and create page
 
-<img src="./client/src/assets/screenshot1.png" width="100px;" alt="Home page"/>
+![screenshot1](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/4d6c0961-3a18-4fe9-bd90-76518067871b)
 
-<img src="./client/src/assets/screenshot2.png" width="100px;" alt="Create page"/>
+![screenshot2](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/e6273cc9-cf5b-4600-8c6d-d3a7be6b8fb1)
 
 ## Contributors ✨
 
