@@ -72,28 +72,7 @@ Thank you for your contributions!
 
 ![screenshot2](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/e6273cc9-cf5b-4600-8c6d-d3a7be6b8fb1)
 
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Judge-Paul"><img src="https://avatars.githubusercontent.com/u/110723341?v=4?s=100" width="100px;" alt="Judge-Paul Ogebe"/><br /><sub><b>Judge-Paul Ogebe</b></sub></a><br /><a href="https://github.com/Judge-Paul/coverwrite-ai/commits?author=Judge-Paul" title="Code">💻</a> <a href="https://github.com/Judge-Paul/coverwrite-ai/commits?author=Judge-Paul" title="Documentation">📖</a> <a href="https://github.com/Judge-Paul/coverwrite-ai/pulls?q=is%3Apr+reviewed-by%3AJudge-Paul" title="Reviewed Pull Requests">👀</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
+<img src="https://contrib.rocks/image?repo=Judge-Paul/coverwrite-ai" />
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
