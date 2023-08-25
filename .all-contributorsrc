@@ -22,6 +22,6 @@
   "skipCi": true,
   "repoType": "github",
   "repoHost": "https://github.com",
-  "projectName": "jobwrite-ai",
+  "projectName": "coverwrite-ai",
   "projectOwner": "Judge-Paul"
 }
