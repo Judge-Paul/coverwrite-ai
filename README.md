@@ -72,7 +72,10 @@ Thank you for your contributions!
 
 ![screenshot2](https://github.com/Sinjini46/coverwrite-ai/assets/87771678/e6273cc9-cf5b-4600-8c6d-d3a7be6b8fb1)
 
+## 👬 Contributors
+
 <img src="https://contrib.rocks/image?repo=Judge-Paul/coverwrite-ai" />
+
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[Apache](./.github/LICENSE)
