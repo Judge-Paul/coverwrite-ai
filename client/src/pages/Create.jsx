@@ -9,21 +9,20 @@ export default function Create() {
     description: "",
     additionalInfo: "",
   });
-  const [formErrors, setFormErrors] = useState({
-    description: "",
-    additionalInfo: "",
-  });
   const [generatedText, setGeneratedText] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
-      const newFormErrors = {};
-      newFormErrors.description = !formData.description ? "Job description is required.": formData.description;
-      newFormErrors.additionalInfo = !formData.additionalInfo ? "Additional information is required." : formData.additionalInfo;
-      setFormErrors(newFormErrors);
-      let isValid = formErrors.description.strip().length != 0 && formErrors.additionalInfo.strip().length != 0;
-      return isValid // Returns true if form data contains description and additional info
+      if (formData.description === "") {
+        toast.error("Job description is required.")
+        return false
+      }
+      if (formData.additionalInfo === "") {
+        toast.error("Additional information is required.")
+        return false
+      }
+      return true
   };
 
   const handleChange = (event) => {
@@ -94,10 +93,6 @@ export default function Create() {
           placeholder="Paste the job description here..."
           rows="9"
         />
-        {formErrors.description && (
-          <p className="text-red-500 text-sm mt-1">{formErrors.description}</p>
-        )}
-
         <label
           htmlFor="additionalInfo"
           className="block font-semibold mt-6 mb-2"
@@ -113,12 +108,6 @@ export default function Create() {
           className="w-full p-2 border rounded-md"
           placeholder="I am a recent graduate with a degree in..."
         />
-        {formErrors.additionalInfo && (
-          <p className="text-red-500 text-sm mt-1">
-            {formErrors.additionalInfo}
-          </p>
-        )}
-
         <button
           type="submit"
           disabled={isLoading}
