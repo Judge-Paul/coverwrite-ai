@@ -3,6 +3,7 @@ import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import Modal from "../components/Modal";
 import { Toaster, toast } from "sonner";
+import Helmet from "react-helmet"
 
 export default function Create() {
   const [formData, setFormData] = useState({
@@ -69,6 +70,9 @@ export default function Create() {
 
   return (
     <main className="bg-[#9fcaff] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10">
+      <Helmet>
+        <title>CoverWriteAI - Create</title>
+      </Helmet>
       <Toaster position="top-right" richColors />
       {showModal && generatedText !== "Not a Valid Job Description" && (
         <Modal
