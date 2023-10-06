@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import Modal from "../components/Modal";
@@ -6,16 +6,24 @@ import { Toaster, toast } from "sonner";
 import Helmet from "react-helmet";
 
 export default function Create() {
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    additionalInfo: "",
-    skills: [],
-    skillInput: "" // Add skillInput property
-  });
+  const localStorageFormData = JSON.parse(localStorage.getItem("formData"));
+
+  const [formData, setFormData] = useState(
+    localStorageFormData || {
+      name: "",
+      description: "",
+      additionalInfo: "",
+      skills: [],
+      skillInput: ""
+    }
+  );
   const [generatedText, setGeneratedText] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
 
   const validateForm = () => {
     if (formData.description === "") {
@@ -96,6 +104,7 @@ export default function Create() {
           } else {
             setShowModal(true);
             toast.success("Cover Letter Generated");
+            localStorage.removeItem("formData");
           }
         } else {
           console.error("Invalid response format");
