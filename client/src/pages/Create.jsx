@@ -3,27 +3,30 @@ import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import Modal from "../components/Modal";
 import { Toaster, toast } from "sonner";
-import Helmet from "react-helmet"
+import Helmet from "react-helmet";
 
 export default function Create() {
   const [formData, setFormData] = useState({
+    name: "",
     description: "",
     additionalInfo: "",
+    skills: [],
+    skillInput: "", // Add skillInput property
   });
   const [generatedText, setGeneratedText] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const validateForm = () => {
-      if (formData.description === "") {
-        toast.error("Job description is required.")
-        return false
-      }
-      if (formData.additionalInfo === "") {
-        toast.error("Additional information is required.")
-        return false
-      }
-      return true
+    if (formData.description === "") {
+      toast.error("Job description is required.");
+      return false;
+    }
+    if (formData.additionalInfo === "") {
+      toast.error("Additional information is required.");
+      return false;
+    }
+    return true;
   };
 
   const handleChange = (event) => {
@@ -34,17 +37,53 @@ export default function Create() {
     }));
   };
 
+  const handleSkillsChange = (event) => {
+    const { value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      skillInput: value, // Update skillInput
+    }));
+  };
+
+  const handleSkillsKeyPress = (event) => {
+    if (event.key === "Enter" || event.key === ",") {
+      event.preventDefault();
+      addSkill();
+    }
+  };
+
+  const addSkill = () => {
+    const { skillInput, skills } = formData;
+    if (skillInput.trim() !== "") {
+      setFormData({
+        ...formData,
+        skills: [...skills, skillInput.trim()],
+        skillInput: "", // Clear skillInput after adding to skills array
+      });
+    }
+  };
+
+  const removeSkill = (index) => {
+    const updatedSkills = [...formData.skills];
+    updatedSkills.splice(index, 1);
+    setFormData({ ...formData, skills: updatedSkills });
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
     if (validateForm()) {
       setIsLoading(true);
-      const prompt = `I am going to pass you some values one is a job description and the next is additional info about myself using those two create the perfect cover letter for the job. If what I pass in the job description section doesn't look like an actual job description don't bother creating the Cover Letter just give me the output "Not a Valid Job Description".\nJob Description: ${formData.description}\nAdditional Info: ${formData.additionalInfo}`;
+      const prompt = `I am going to pass you some values one is a job description and the next is additional info about myself using those two create the perfect cover letter for the job. If what I pass in the job description section doesn't look like an actual job description don't bother creating the Cover Letter just give me the output "Not a Valid Job Description". My name is \n${
+        formData.name
+      }\nSkills: ${formData.skills.join(", ")}\nJob Description: ${
+        formData.description
+      }\nAdditional Info: ${formData.additionalInfo}`;
       try {
         const response = await axios.post(
           "https://coverwrite.onrender.com/generate",
           {
             prompt,
-          }
+          },
         );
 
         const generatedText =
@@ -85,6 +124,18 @@ export default function Create() {
         onSubmit={handleSubmit}
         className="w-full bg-white rounded-lg p-6 md:p-14 shadow-lg text-[#3a4688]"
       >
+        <label htmlFor="name" className="block font-semibold mb-2">
+          Name:
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          className="mb-7 w-full p-2 border rounded-md"
+          placeholder="David Adeleke"
+        />
         <label htmlFor="description" className="block font-semibold mb-2">
           Job Description:
         </label>
@@ -111,6 +162,35 @@ export default function Create() {
           onChange={handleChange}
           className="w-full p-2 border rounded-md"
           placeholder="I am a recent graduate with a degree in..."
+        />
+        <label htmlFor="skills" className="block font-semibold mt-6 mb-2">
+          Skills (Separated by commas):
+        </label>
+        <div className="flex flex-wrap mb-2">
+          {formData.skills.map((skill, index) => (
+            <span
+              key={index}
+              className="bg-blue-500 text-white rounded-full px-2 py-1 mr-2 mt-2 flex items-center w-max"
+            >
+              {skill}
+              <button
+                className="ml-2 text-white hover:text-gray-100"
+                onClick={() => removeSkill(index)}
+              >
+                &#10005;
+              </button>
+            </span>
+          ))}
+        </div>
+        <input
+          type="text"
+          id="skills"
+          name="skills"
+          value={formData.skillInput}
+          onChange={handleSkillsChange}
+          onKeyDown={handleSkillsKeyPress}
+          className="w-full p-2 border rounded-md"
+          placeholder="e.g., JavaScript, React, Node.js, Microsoft Word"
         />
         <button
           type="submit"

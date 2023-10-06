@@ -53,6 +53,7 @@ function Navbar() {
         <div className="hidden md:flex mt-2 text-[#3a4688] font-bold">
           {links.map((link) => (
             <Link
+              key={link.route}
               to={link.route}
               className="mx-4 lg:mx-7 hover:text-blue-500"
               onClick={() => setIsOpen(false)}
@@ -76,6 +77,7 @@ function Navbar() {
           <div className="font-bold text-center">
             {links.map((link) => (
               <Link
+                key={link.route}
                 to={link.route}
                 className="block my-3 text-lg hover:text-[#29306f]"
                 onClick={() => setIsOpen(false)}

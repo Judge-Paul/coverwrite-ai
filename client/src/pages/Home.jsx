@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../assets/hero.webp";
-import Helmet from "react-helmet"
+import Helmet from "react-helmet";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <title>CoverWriteAI - Home</title>
       </Helmet>
       <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 md:mt-16">
+        <div className="w-full md:w-1/2 md:mt-16 lg:pr-20">
           <h2 className="font-bold text-3xl md:text-6xl text-[#004fb6]">
             <span className="md:block">Create an </span>
             <span className="md:block">Amazing </span>
