@@ -7,7 +7,7 @@ import Helmet from "react-helmet";
 
 export default function Create() {
   const localStorageFormData = JSON.parse(localStorage.getItem("formData"));
-  
+
   const [formData, setFormData] = useState(localStorageFormData || {
     name: "",
     description: "",
@@ -101,6 +101,7 @@ export default function Create() {
           } else {
             setShowModal(true);
             toast.success("Cover Letter Generated");
+            localStorage.removeItem("formData");
           }
         } else {
           console.error("Invalid response format");
