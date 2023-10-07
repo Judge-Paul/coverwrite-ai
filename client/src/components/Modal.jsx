@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { jsPDF } from "jspdf";
-import { FaDownload } from "react-icons/fa";
+import { FaClosedCaptioning, FaDownload } from "react-icons/fa";
 const doc = new jsPDF("p", "in", "a4");
 
 export default function Modal({ showModal, setShowModal, text }) {
@@ -11,8 +11,10 @@ export default function Modal({ showModal, setShowModal, text }) {
   function savePDF(text) {
     let lMargin = 20;
     let rMargin = 20;
-    let pdfInMM = 210; // width of A4 in mm
+    let pdfInMM = 210; 
     let doc = new jsPDF("p", "mm", "a4");
+    doc.setFontSize(13);
+    doc.setFont("times");
     let lines = doc.splitTextToSize(text, pdfInMM - lMargin - rMargin);
     doc.text(lMargin, 20, lines);
     doc.save("Cover Letter.pdf");
