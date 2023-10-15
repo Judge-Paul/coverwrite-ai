@@ -57,7 +57,7 @@ It redirect me back to the previous page and showing the error in the picture be
 
 ##### Example
 ###### The browser console displays the following error message:
-<img src="https://i.imgur.com/INSozua.png"/>
+<img src=""/>
 
 ### Environment
 **Please provide details about your environment:**

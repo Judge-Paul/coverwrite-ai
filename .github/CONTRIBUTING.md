@@ -70,7 +70,7 @@ Before you start working on a feature or bug fix, consider creating an issue to 
 
 ### Working on Features or Bug Fixes
 
-1. Assign yourself to a relevant issue or create a new one if needed.
+1. Request to get assigned an existing issue or create a new one if needed.
 
 2. Fork the repository and set up your development environment.
 
@@ -108,6 +108,23 @@ Before you start working on a feature or bug fix, consider creating an issue to 
 
 
 - Provide additional details in the commit message body if necessary.
+
+## Pull Request Submission
+
+- Fill out the following information in your pull request:
+  - **Type of Contribution**: [Bug Fix / Feature / Documentation / Code Optimization / Translation]
+  - **Summary**: A brief description of your contribution.
+  - **Related Issue**: Link to the related issue (if applicable).
+
+- Make sure your pull request addresses one issue or feature at a time.
+
+- Reference the issue number in the pull request title or description.
+
+## Review Process
+
+- Our team will review your contribution, and feedback will be provided.
+
+- Be responsive to comments and participate in the review process to address any concerns or suggestions.
 
 ## Communication
 

@@ -1,32 +1,79 @@
-## Description
+# Issue Template
+---
+name: [NAME]
 
-<!-- Provide a clear and concise description of the issue or feature request. -->
+about: [A SHORT DESCRIPTIVE WORD]
 
-## Expected Behavior
+---
 
-<!-- Describe the behavior you expected or what you'd like to see changed. -->
+### Issue Description
+**Is this issue related to a bug, an enhancement, or a general inquiry?** (Please select one)
 
-## Current Behavior
+- [ ] Bug
+- [ ] Enhancement
+- [ ] General Inquiry
+ 
+**Describe the issue or request in detail:**
 
-<!-- Describe the current behavior or the issue you are experiencing. -->
 
-## Steps to Reproduce
+#### Feature Request:
 
-<!-- If applicable, provide steps to reproduce the issue. -->
 
-## Screenshots (if applicable)
+### Expected Behavior
+**What should happen?**
+.
 
-<!-- Include screenshots that help demonstrate the issue or provide context for the feature request. -->
 
-## Possible Solution (if applicable)
 
-<!-- If you have a suggestion for solving the issue, provide it here. -->
+### Actual Behavior
+**What actually happened?**
 
-## Additional Context (if applicable)
+#### Actual Behavior:
 
-<!-- Add any additional information, context, or relevant links here. -->
 
-## Checklist
 
-- [ ] I have searched for similar issues before opening this one.
-- [ ] I have read and understand the [CONTRIBUTING.md](./CONTRIBUTING.md) document.
+### Steps to Reproduce (for bugs)
+**How can we replicate the issue?**
+
+###### Provide clear steps to reproduce the problem, including any inputs, selections, or actions taken.
+
+#### Steps to Reproduce:
+
+1.
+2. 
+3. 
+
+### Additional Information
+**Screenshots, Error Messages, and Additional Context**
+
+
+### Environment
+**Please provide details about your environment:**
+
+- **Device:** [e.g., Desktop, Mobile]
+- **Browser:** [e.g., Chrome, Firefox, Safari]
+- **Operating System:** [e.g., Windows, macOS, Linux]
+- **Web App Version:** [if applicable]
+
+### Possible Solutions (for enhancements)
+**If you have a suggestion for a solution, please describe it.**
+
+### Checklist
+Before you submit this issue, please make sure you have:
+
+- [ ] Checked for similar issues in the [existing issues](link to issues).
+- [ ] Included a descriptive issue title.
+- [ ] Filled out all the necessary sections.
+- [ ] Verified that your issue is reproducible (for bugs).
+- [ ] Included any relevant screenshots or error messages.
+
+### Additional Information
+**Is there anything else you'd like to add or ask?**
+
+
+### Your Feedback Matters
+Thank you for helping us improve the CoverWriteAI issue. Your feedback is valuable to us, and we appreciate your contribution.
+
+(Please do not modify or delete the lines below.)
+- [ ] I have read and understood the [Code of Conduct](link).
+- [ ] I understand that this is a public platform, and my comments will be visible to others.
