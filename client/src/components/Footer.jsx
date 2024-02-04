@@ -3,6 +3,7 @@ import { FaGithub, FaTwitter, FaYoutube, FaHashnode } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
     <footer className="bg-[#9fcaff] font-workSans backdrop-blur-md pt-12 pb-6">
       <div className="mx-auto px-4 overflow-hidden sm:px-6 lg:px-8 pt-8 border-t-2 border-white">
@@ -69,7 +70,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="mt-5 text-center text-base text-blue-700">
-          &copy; 2023 CoverWriteAI. All rights reserved.
+          &copy; {year} CoverWriteAI. All rights reserved.
         </p>
       </div>
     </footer>
