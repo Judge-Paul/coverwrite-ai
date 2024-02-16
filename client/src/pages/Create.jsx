@@ -89,7 +89,7 @@ export default function Create() {
       }\nAdditional Info: ${formData.additionalInfo}`;
       try {
         const response = await axios.post(
-          "https://coverwrite.onrender.com/generate",
+          "https://coverwrite-db4cc4e5262c.herokuapp.com/generate",
           {
             prompt,
           },
