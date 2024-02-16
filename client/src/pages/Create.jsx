@@ -14,8 +14,8 @@ export default function Create() {
       description: "",
       additionalInfo: "",
       skills: [],
-      skillInput: ""
-    }
+      skillInput: "",
+    },
   );
   const [generatedText, setGeneratedText] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +41,7 @@ export default function Create() {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -49,7 +49,7 @@ export default function Create() {
     const { value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      skillInput: value // Update skillInput
+      skillInput: value, // Update skillInput
     }));
   };
 
@@ -66,7 +66,7 @@ export default function Create() {
       setFormData({
         ...formData,
         skills: [...skills, skillInput.trim()],
-        skillInput: "" // Clear skillInput after adding to skills array
+        skillInput: "", // Clear skillInput after adding to skills array
       });
     }
   };
@@ -91,12 +91,11 @@ export default function Create() {
         const response = await axios.post(
           "https://coverwrite.onrender.com/generate",
           {
-            prompt
-          }
+            prompt,
+          },
         );
 
-        const generatedText =
-          response?.data?.result?.[0]?.candidates?.[0]?.output;
+        const generatedText = response?.data?.text;
         if (generatedText) {
           setGeneratedText(generatedText);
           if (generatedText === "Not a Valid Job Description") {

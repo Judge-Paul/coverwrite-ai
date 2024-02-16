@@ -1,44 +1,54 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { TextServiceClient } = require("@google-ai/generativelanguage").v1beta2;
-const { GoogleAuth } = require("google-auth-library");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { rateLimit } = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
 const port = 3000;
 
-const MODEL_NAME = "models/text-bison-001";
 const API_KEY = process.env.API_KEY;
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-const client = new TextServiceClient({
-  authClient: new GoogleAuth().fromAPIKey(API_KEY),
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
 });
 
+app.use(limiter);
 app.use(express.json());
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 app.use(cors(["http://localhost:5173", "https://coverwrite.vercel.app"]));
 
-app.post("/generate", (req, res) => {
+function checkReferer(req, res, next) {
+  const referer = req.get("referer");
+  const allowedReferer = "https://coverwrite.vercel.app";
+
+  if (referer && referer.startsWith(allowedReferer)) {
+    next();
+  } else {
+    res.status(403).json({ error: "Forbidden" });
+  }
+}
+
+app.post("/generate", checkReferer, async (req, res) => {
   const { prompt } = req.body;
 
   if (!prompt) return res.status(400).json({ error: "Prompt is required." });
-  client
-    .generateText({
-      model: MODEL_NAME,
-      prompt: {
-        text: prompt,
-      },
-    })
-    .then((result) => {
-      res.status(200).json({ status: "Success", result });
-    })
-    .catch((error) => {
-      console.error(error);
-      res
-        .status(500)
-        .json({ error: "An error occurred while generating text." });
-    });
+
+  try {
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    return res.status(200).json({ text });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error." });
+  }
 });
 
 app.listen(port, () => {
