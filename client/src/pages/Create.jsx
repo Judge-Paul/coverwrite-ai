@@ -5,6 +5,8 @@ import Modal from "../components/Modal";
 import { Toaster, toast } from "sonner";
 import Helmet from "react-helmet";
 
+const serverURL = import.meta.env.VITE_APP_SERVER_URL;
+
 export default function Create() {
   const localStorageFormData = JSON.parse(localStorage.getItem("formData"));
 
@@ -49,7 +51,7 @@ export default function Create() {
     const { value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      skillInput: value, // Update skillInput
+      skillInput: value,
     }));
   };
 
@@ -66,7 +68,7 @@ export default function Create() {
       setFormData({
         ...formData,
         skills: [...skills, skillInput.trim()],
-        skillInput: "", // Clear skillInput after adding to skills array
+        skillInput: "",
       });
     }
   };
@@ -88,12 +90,13 @@ export default function Create() {
         formData.description
       }\nAdditional Info: ${formData.additionalInfo}`;
       try {
-        const response = await axios.post(
-          "https://coverwrite-db4cc4e5262c.herokuapp.com/generate",
-          {
-            prompt,
-          },
-        );
+        const response = await axios.post(`${serverURL}/generate`, {
+          prompt,
+        });
+
+        if (response.status === 429) {
+          return toast.error("Too many requests");
+        }
 
         const generatedText = response?.data?.text;
         if (generatedText) {

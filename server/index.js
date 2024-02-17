@@ -14,7 +14,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const limiter = rateLimit({
   windowMs: 60 * 1000,
-  limit: 5,
+  limit: 3,
   standardHeaders: "draft-7",
   legacyHeaders: false,
 });
@@ -24,18 +24,16 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors(["http://localhost:5173", "https://coverwrite.vercel.app"]));
 
-function checkReferer(req, res, next) {
-  const referer = req.get("referer");
+function validateReferer(req, res, next) {
   const allowedReferer = "https://coverwrite.vercel.app";
-
-  if (referer && referer.startsWith(allowedReferer)) {
-    next();
-  } else {
-    res.status(403).json({ error: "Forbidden" });
+  const referer = req.headers.referer;
+  if (!referer || !referer.includes(allowedReferer)) {
+    return res.status(403).send("Forbidden");
   }
+  next();
 }
 
-app.post("/generate", checkReferer, async (req, res) => {
+app.post("/generate", validateReferer, async (req, res) => {
   const { prompt } = req.body;
 
   if (!prompt) return res.status(400).json({ error: "Prompt is required." });
