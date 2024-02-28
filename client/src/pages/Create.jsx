@@ -84,7 +84,7 @@ export default function Create() {
     event.preventDefault();
     if (validateForm()) {
       setIsLoading(true);
-      const prompt = `I am going to pass you some values one is a job description and the next is additional info about myself using those two create the perfect cover letter for the job. If what I pass in the job description section doesn't look like an actual job description don't bother creating the Cover Letter just give me the output "Not a Valid Job Description". My name is \n${
+      const prompt = `I am going to pass you some values one is a job description, the next is additional info about myself and finally my skills (if the skills passed are necessary to the job description) using those three create the perfect cover letter for the job. My name is \n${
         formData.name
       }\nSkills: ${formData.skills.join(", ")}\nJob Description: ${
         formData.description
