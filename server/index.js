@@ -22,7 +22,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors(["http://localhost:5173", "https://coverwrite.vercel.app"]));
+app.use(cors());
 
 function validateReferer(req, res, next) {
   const allowedReferer = "https://coverwrite.vercel.app";
