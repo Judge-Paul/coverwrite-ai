@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 import Modal from "../components/Modal";
 import { Toaster, toast } from "sonner";
 import Helmet from "react-helmet";
+import getPDFText from "../lib/getPDFText";
 
 const serverURL = import.meta.env.VITE_APP_SERVER_URL;
 
 export default function Create() {
   const localStorageFormData = JSON.parse(localStorage.getItem("formData"));
-
+  const resumeRef = useRef(null);
   const [formData, setFormData] = useState(
     localStorageFormData || {
       name: "",
+      resume: "",
       description: "",
       additionalInfo: "",
       skills: [],
@@ -28,19 +30,46 @@ export default function Create() {
   }, [formData]);
 
   const validateForm = () => {
-    if (formData.description === "") {
-      toast.error("Job description is required.");
+    if (formData.name === "") {
+      toast.error("Additional information is required.");
       return false;
     }
-    if (formData.additionalInfo === "") {
-      toast.error("Additional information is required.");
+    if (formData.description === "") {
+      toast.error("Job description is required.");
       return false;
     }
     return true;
   };
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const { name, value } = event.target;
+    if (name === "resume") {
+      const file = event.target.files[0];
+
+      if (file && file.size > 262144) {
+        toast.error("File Uploaded is too large.");
+        resumeRef.current.value = null;
+        return;
+      }
+
+      if (file && file.type === "application/pdf") {
+        getPDFText(file)
+          .then((text) => {
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              resume: text,
+            }));
+          })
+          .catch((error) => {
+            toast.error("Error Uploading PDF. Try Again");
+            resumeRef.current.value = null;
+          });
+      } else {
+        toast.error("Please select a PDF file.");
+        resumeRef.current.value = null;
+      }
+    }
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -84,11 +113,12 @@ export default function Create() {
     event.preventDefault();
     if (validateForm()) {
       setIsLoading(true);
-      const prompt = `I am going to pass you some values one is a job description, the next is additional info about myself and finally my skills (if the skills passed are necessary to the job description) using those three create the perfect cover letter for the job. My name is \n${
-        formData.name
-      }\nSkills: ${formData.skills.join(", ")}\nJob Description: ${
-        formData.description
-      }\nAdditional Info: ${formData.additionalInfo}`;
+      let prompt = "";
+      for (const key in formData) {
+        if ((formData[key] === "") | (formData[key].length > 0)) {
+          prompt += `${key}: ${formData[key]}\n`;
+        }
+      }
       try {
         const response = await axios.post(`${serverURL}/generate`, {
           prompt,
@@ -147,6 +177,18 @@ export default function Create() {
           onChange={handleChange}
           className="mb-7 w-full p-2 border rounded-md"
           placeholder="David Adeleke"
+        />
+        <label htmlFor="resume" className="block font-semibold mb-2">
+          Resume:
+        </label>
+        <input
+          type="file"
+          accept=".pdf"
+          id="resume"
+          name="resume"
+          className="mb-7 w-full p-2 border rounded-md"
+          onChange={handleChange}
+          ref={resumeRef}
         />
         <label htmlFor="description" className="block font-semibold mb-2">
           Job Description:

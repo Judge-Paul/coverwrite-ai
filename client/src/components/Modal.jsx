@@ -44,7 +44,7 @@ export default function Modal({ showModal, setShowModal, text }) {
                     onCopy={() => setCopied(true)}
                   >
                     <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
-                      {copied ? "Copied!" : "Copy to clipboard"}
+                      {copied ? "Copied!" : "Copy"}
                     </button>
                   </CopyToClipboard>
                   <button

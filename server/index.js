@@ -8,8 +8,9 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-const API_KEY = process.env.API_KEY;
-const genAI = new GoogleGenerativeAI(API_KEY);
+const apiKey = process.env.API_KEY;
+const basePrompt = process.env.BASE_PROMPT;
+const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const limiter = rateLimit({
@@ -39,7 +40,7 @@ app.post("/generate", validateReferer, async (req, res) => {
   if (!prompt) return res.status(400).json({ error: "Prompt is required." });
 
   try {
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent(basePrompt + "\n" + prompt);
     const response = await result.response;
     const text = response.text();
     return res.status(200).json({ text });
