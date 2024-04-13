@@ -3,6 +3,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { rateLimit } = require("express-rate-limit");
+const cheerio = require("cheerio");
+const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
@@ -33,6 +35,24 @@ function validateReferer(req, res, next) {
   }
   next();
 }
+
+app.get("/company-info", async (req, res) => {
+  try {
+    const url = req.query.url;
+    if (!url) {
+      return res.status(400).json({ error: "URL parameter is required" });
+    }
+
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const textContent = $("body").text();
+
+    res.json({ text: textContent });
+  } catch (error) {
+    console.error("Error fetching content:", error);
+    res.status(500).json({ error: "Error fetching content" });
+  }
+});
 
 app.post("/generate", validateReferer, async (req, res) => {
   const { prompt } = req.body;

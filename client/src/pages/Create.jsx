@@ -5,6 +5,8 @@ import Modal from "../components/Modal";
 import { Toaster, toast } from "sonner";
 import Helmet from "react-helmet";
 import getPDFText from "../lib/getPDFText";
+import isURL from "../lib/isURL";
+import getTextContent from "../lib/getTextContent";
 
 const serverURL = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -17,6 +19,7 @@ export default function Create() {
       resume: "",
       description: "",
       additionalInfo: "",
+      companyURL: "",
       skills: [],
       skillInput: "",
     },
@@ -36,6 +39,10 @@ export default function Create() {
     }
     if (formData.description === "") {
       toast.error("Job description is required.");
+      return false;
+    }
+    if (formData.companyURL && !isURL(formData.companyURL)) {
+      toast.error("Company URL is not valid.");
       return false;
     }
     return true;
@@ -113,13 +120,19 @@ export default function Create() {
     event.preventDefault();
     if (validateForm()) {
       setIsLoading(true);
-      let prompt = "";
-      for (const key in formData) {
-        if ((formData[key] === "") | (formData[key].length > 0)) {
-          prompt += `${key}: ${formData[key]}\n`;
-        }
-      }
       try {
+        let prompt = "";
+
+        const companyInfo = await getTextContent(formData.companyURL);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          companyInfo,
+        }));
+        for (const key in formData) {
+          if ((formData[key] === "") | (formData[key].length > 0)) {
+            prompt += `${key}: ${formData[key]}\n`;
+          }
+        }
         const response = await axios.post(`${serverURL}/generate`, {
           prompt,
         });
@@ -216,6 +229,18 @@ export default function Create() {
           onChange={handleChange}
           className="w-full p-2 border rounded-md"
           placeholder="I am a recent graduate with a degree in..."
+        />
+        <label htmlFor="companyURL" className="block font-semibold mt-6 mb-2">
+          Company About us URL:
+        </label>
+        <input
+          type="text"
+          id="companyURL"
+          name="companyURL"
+          value={formData.companyURL}
+          onChange={handleChange}
+          className="w-full p-2 border rounded-md"
+          placeholder="https://www.company.com/about-us"
         />
         <label htmlFor="skills" className="block font-semibold mt-6 mb-2">
           Skills (Separated by commas):
