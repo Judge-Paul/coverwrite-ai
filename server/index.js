@@ -16,10 +16,10 @@ const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const limiter = rateLimit({
-  windowMs: 60 * 1000,
-  limit: 3,
-  standardHeaders: "draft-7",
-  legacyHeaders: false,
+	windowMs: 60 * 1000,
+	limit: 3,
+	standardHeaders: "draft-7",
+	legacyHeaders: false,
 });
 
 app.use(limiter);
@@ -28,48 +28,56 @@ app.use(morgan("dev"));
 app.use(cors());
 
 function validateReferer(req, res, next) {
-  const allowedReferer = "https://coverwrite.vercel.app";
-  const referer = req.headers.referer;
-  if (!referer || !referer.includes(allowedReferer)) {
-    return res.status(403).send("Forbidden");
-  }
-  next();
+	const allowedReferers = [
+		"https://coverwrite.vercel.app",
+		"http://localhost:5173",
+	];
+	const referer = req.headers.referer;
+	if (
+		!referer ||
+		!allowedReferers.some((allowedReferer) =>
+			referer.startsWith(allowedReferer),
+		)
+	) {
+		return res.status(403).send("Forbidden");
+	}
+	next();
 }
 
 app.get("/company-info", async (req, res) => {
-  try {
-    const url = req.query.url;
-    if (!url) {
-      return res.status(400).json({ error: "URL parameter is required" });
-    }
+	try {
+		const url = req.query.url;
+		if (!url) {
+			return res.status(400).json({ error: "URL parameter is required" });
+		}
 
-    const response = await axios.get(url);
-    const $ = cheerio.load(response.data);
-    const textContent = $("body").text();
+		const response = await axios.get(url);
+		const $ = cheerio.load(response.data);
+		const textContent = $("body").text();
 
-    res.json({ text: textContent });
-  } catch (error) {
-    console.error("Error fetching content:", error);
-    res.status(500).json({ error: "Error fetching content" });
-  }
+		res.json({ text: textContent });
+	} catch (error) {
+		console.error("Error fetching content:", error);
+		res.status(500).json({ error: "Error fetching content" });
+	}
 });
 
 app.post("/generate", validateReferer, async (req, res) => {
-  const { prompt } = req.body;
+	const { prompt } = req.body;
 
-  if (!prompt) return res.status(400).json({ error: "Prompt is required." });
+	if (!prompt) return res.status(400).json({ error: "Prompt is required." });
 
-  try {
-    const result = await model.generateContent(basePrompt + "\n" + prompt);
-    const response = await result.response;
-    const text = response.text();
-    return res.status(200).json({ text });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error." });
-  }
+	try {
+		const result = await model.generateContent(basePrompt + "\n" + prompt);
+		const response = await result.response;
+		const text = response.text();
+		return res.status(200).json({ text });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ error: "Internal server error." });
+	}
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+	console.log(`Server is running on port ${port}`);
 });
