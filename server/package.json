@@ -5,6 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon index.js",
+		"wrangler:dev": "wrangler dev",
+		"wrangler:deploy": "wrangler deploy",
 		"start": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -20,9 +22,11 @@
 		"express": "^4.18.2",
 		"express-rate-limit": "^7.1.5",
 		"google-auth-library": "^9.0.0",
+		"hono": "^4.6.4",
 		"morgan": "^1.10.0"
 	},
 	"devDependencies": {
-		"nodemon": "^3.1.0"
+		"nodemon": "^3.1.0",
+		"wrangler": "^3.80.4"
 	}
 }
