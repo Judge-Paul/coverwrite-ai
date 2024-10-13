@@ -14,6 +14,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@google/generative-ai": "^0.2.1",
+		"@hono-rate-limiter/cloudflare": "^0.2.1",
 		"axios": "^1.6.8",
 		"cheerio": "^1.0.0-rc.12",
 		"cors": "^2.8.5",
@@ -22,6 +23,7 @@
 		"express-rate-limit": "^7.1.5",
 		"google-auth-library": "^9.0.0",
 		"hono": "^4.6.4",
+		"hono-rate-limiter": "^0.4.0",
 		"morgan": "^1.10.0"
 	},
 	"devDependencies": {
