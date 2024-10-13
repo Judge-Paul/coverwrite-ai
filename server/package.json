@@ -4,9 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon index.js",
-		"wrangler:dev": "wrangler dev",
-		"wrangler:deploy": "wrangler deploy",
+		"dev": "wrangler dev ./index.ts",
+		"deploy": "wrangler deploy",
 		"start": "node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
