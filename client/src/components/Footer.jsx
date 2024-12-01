@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
 	const year = new Date().getFullYear();
 	return (
-		<footer className="bg-[#9fcaff] font-workSans backdrop-blur-md pt-12 pb-6">
+		<footer className="bg-[#c5ddfa] font-workSans backdrop-blur-md pt-12 pb-6">
 			<div className="mx-auto px-4 overflow-hidden sm:px-6 lg:px-8 pt-8 border-t-2 border-white">
 				<nav
 					className="-mx-5 -my-2 flex flex-wrap justify-center"
