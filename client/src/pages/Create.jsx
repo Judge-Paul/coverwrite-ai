@@ -167,7 +167,7 @@ export default function Create() {
 	}
 
 	return (
-		<main className="bg-[#9fcaff] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10">
+		<main className="bg-[#c5ddfa] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10">
 			<Helmet>
 				<title>CoverWriteAI - Create</title>
 			</Helmet>

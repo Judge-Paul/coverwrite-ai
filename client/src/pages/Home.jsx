@@ -5,7 +5,7 @@ import Helmet from "react-helmet";
 
 export default function Home() {
 	return (
-		<main className="bg-[#9fcaff] font-workSans px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-20">
+		<main className="bg-[#c5ddfa] font-workSans px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-20">
 			<Helmet>
 				<title>CoverWriteAI - Home</title>
 			</Helmet>
